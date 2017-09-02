@@ -1,0 +1,6 @@
+MGEGamePattern             RCDATA MGEGamePattern.bin
+MGEGamePatternMastermind   RCDATA MGEGamePatternMastermind.bin
+MGEGameReplace             RCDATA MGEGameReplace.bin 
+MGEEditorPattern           RCDATA MGEEditorPattern.bin
+MGEEditorPatternMastermind RCDATA MGEEditorPatternMastermind.bin
+MGEEditorReplace           RCDATA MGEEditorReplace.bin 
