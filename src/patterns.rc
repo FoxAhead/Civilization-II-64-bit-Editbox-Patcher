@@ -1,0 +1,9 @@
+MGEGame   RCDATA Patterns\MGEGame.bin
+MGEGameMM RCDATA Patterns\MGEGameMM.bin
+MGEGameFA RCDATA Patterns\MGEGameFA.bin
+MGEEdit   RCDATA Patterns\MGEEdit.bin
+MGEEditMM RCDATA Patterns\MGEEditMM.bin
+MGEEditFA RCDATA Patterns\MGEEditFA.bin
+TOTGame   RCDATA Patterns\TOTGame.bin
+TOTGameMM RCDATA Patterns\TOTGameMM.bin
+TOTGameFA RCDATA Patterns\TOTGameFA.bin
