@@ -1,4 +1,4 @@
-program Civ2EditboxPatcher;
+program Civ2x64EditboxPatcher;
 
 {$R 'patterns.res' 'patterns.rc'}
 
