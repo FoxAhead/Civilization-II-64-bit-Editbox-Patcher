@@ -11,7 +11,8 @@ uses
   Dialogs,
   StdCtrls,
   Types,
-  Unit2;
+  Unit2,
+  Unit3;
 
 type
   TForm1 = class(TForm)
@@ -27,6 +28,7 @@ type
     procedure ButtonBrowseClick(Sender: TObject);
     procedure ButtonPatchClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure Label2Click(Sender: TObject);
   private
     { Private declarations }
     function CheckFile(FileName: string): Boolean;
@@ -283,6 +285,15 @@ begin
     Result := BackupFileName
   else
     raise Exception.Create('Failed creating backup file');
+end;
+
+procedure TForm1.Label2Click(Sender: TObject);
+var
+  FormInfo: TFormInfo;
+begin
+  FormInfo := TFormInfo.Create(Form1);
+  FormInfo.ShowModal;
+  FormInfo.Release;
 end;
 
 end.

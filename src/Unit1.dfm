@@ -1,6 +1,6 @@
 object Form1: TForm1
-  Left = 638
-  Top = 285
+  Left = 262
+  Top = 611
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Civilization II 64-bit Editbox Patcher'
@@ -30,17 +30,18 @@ object Form1: TForm1
   object Label2: TLabel
     Left = 480
     Top = 1
-    Width = 28
+    Width = 18
     Height = 13
     Cursor = crHandPoint
     Anchors = [akTop, akRight]
-    Caption = 'About'
+    Caption = 'Info'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlue
     Font.Height = -11
     Font.Name = 'MS Sans Serif'
     Font.Style = [fsUnderline]
     ParentFont = False
+    OnClick = Label2Click
   end
   object Label3: TLabel
     Left = 8
