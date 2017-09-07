@@ -3,16 +3,16 @@ unit Unit1;
 interface
 
 uses
-  Windows,
-  SysUtils,
   Classes,
   Controls,
-  Forms,
   Dialogs,
+  Forms,
   StdCtrls,
   Types,
   Unit2,
-  Unit3;
+  ShellAPI,
+  SysUtils,
+  Windows;
 
 type
   TForm1 = class(TForm)
@@ -24,11 +24,11 @@ type
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
-    Label4: TLabel;
+    LabelVersion: TLabel;
     procedure ButtonBrowseClick(Sender: TObject);
     procedure ButtonPatchClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    procedure Label2Click(Sender: TObject);
+    procedure OpenGitHubLink(Sender: TObject);
   private
     { Private declarations }
     function CheckFile(FileName: string): Boolean;
@@ -226,6 +226,7 @@ procedure TForm1.FormCreate(Sender: TObject);
 begin
   if FindCmdLineSwitch('debug') then
     DEBUG_LEVEL := 2;
+  LabelVersion.Caption := 'Version ' + Tlib.CurrentFileInfo(Application.ExeName);
 end;
 
 function TForm1.PatchFile(FileName: string): Boolean;
@@ -287,13 +288,10 @@ begin
     raise Exception.Create('Failed creating backup file');
 end;
 
-procedure TForm1.Label2Click(Sender: TObject);
-var
-  FormInfo: TFormInfo;
+procedure TForm1.OpenGitHubLink(Sender: TObject);
 begin
-  FormInfo := TFormInfo.Create(Form1);
-  FormInfo.ShowModal;
-  FormInfo.Release;
+  ShellExecute(Application.Handle, 'open', 'https://github.com/FoxAhead/Civilization-II-64-bit-Editbox-Patcher',
+    nil, nil, SW_SHOW);
 end;
 
 end.

@@ -14,6 +14,6 @@ begin
   Application.Initialize;
   Application.Title := 'Civilization II 64-bit Editbox Patcher';
   Application.CreateForm(TForm1, Form1);
-  Application.CreateForm(TFormInfo, FormInfo);
+  //Application.CreateForm(TFormInfo, FormInfo);
   Application.Run;
 end.
