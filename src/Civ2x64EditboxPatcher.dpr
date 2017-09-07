@@ -5,8 +5,7 @@ program Civ2x64EditboxPatcher;
 uses
   Forms,
   Unit1 in 'Unit1.pas' {Form1},
-  Unit2 in 'Unit2.pas',
-  Unit3 in 'Unit3.pas' {FormInfo};
+  Unit2 in 'Unit2.pas';
 
 {$R *.res}
 

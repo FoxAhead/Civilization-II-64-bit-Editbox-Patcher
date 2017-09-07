@@ -1,9 +1,3 @@
-MGEGame   RCDATA Patterns\MGEGame.bin
-MGEGameMM RCDATA Patterns\MGEGameMM.bin
-MGEGameFA RCDATA Patterns\MGEGameFA.bin
-MGEEdit   RCDATA Patterns\MGEEdit.bin
-MGEEditMM RCDATA Patterns\MGEEditMM.bin
-MGEEditFA RCDATA Patterns\MGEEditFA.bin
-TOTGame   RCDATA Patterns\TOTGame.bin
-TOTGameMM RCDATA Patterns\TOTGameMM.bin
-TOTGameFA RCDATA Patterns\TOTGameFA.bin
+Civ2   RCDATA Patterns\Civ2.bin
+Civ2FA RCDATA Patterns\Civ2FA.bin
+Civ2MM RCDATA Patterns\Civ2MM.bin
