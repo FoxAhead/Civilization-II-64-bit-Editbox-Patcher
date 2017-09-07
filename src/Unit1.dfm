@@ -129,7 +129,7 @@ object Form1: TForm1
       'including the response to the Enter, TAB or Escape keys.'
       
         'So, the establishing city is now just '#39'B'#39', '#39'Enter'#39'. And customiz' +
-        'ing world size is like '#39'60'#39', '#39'TAB'#39', '#39'100'#39', '
+        'ing world size is like '#39'100'#39', '#39'TAB'#39', '#39'100'#39', '
       #39'Enter'#39'. No more mouse clicking.'
       'Supported game versions are:'
       '* Civilization II Multiplayer Gold Edition'
