@@ -25,10 +25,12 @@ type
     Label2: TLabel;
     Label3: TLabel;
     LabelVersion: TLabel;
+    LabelDebug: TLabel;
     procedure ButtonBrowseClick(Sender: TObject);
     procedure ButtonPatchClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure OpenGitHubLink(Sender: TObject);
+    procedure LabelVersionClick(Sender: TObject);
   private
     { Private declarations }
     function CheckFile(FileName: string): Boolean;
@@ -46,6 +48,7 @@ type
     function GetApplicationType(var FileBuffer: TByteDynArray): TApplicationType;
     function FindPos(var Where: array of Byte; What: array of Byte; Offset: Integer = 0; SearchDirection: TSearchDirection = sdDown): Integer;
     procedure SetCallAddresses(var PatternBuffer: TByteDynArray; var Calls: TCallDynArray);
+    function IsAllCapital(SomeString: string): Boolean;
   public
     { Public declarations }
   end;
@@ -80,23 +83,31 @@ function TForm1.CheckFile(FileName: string): Boolean;
 var
   FileBuffer: TByteDynArray;
   SearchInfo: TSearchInfoDynArray;
+  VersionName: string;
 begin
   Result := False;
   try
     Log(1, 'Analyzing file ' + FileName + '...');
     LoadFromFile(FileName, FileBuffer);
     SearchInfo := SearchForPatterns(FileBuffer);
+    VersionName := GetVersionName(FileBuffer);
+    if GetVersionName(FileBuffer) = '' then
+      Log('No version info detected.')
+    else
+      Log('Version ''' + GetVersionName(FileBuffer) + ''' detected.');
     Log(1, 'Analyzing done.');
-    if (Length(SearchInfo) <> 1) then
+    if Length(SearchInfo) = 0 then
     begin
-      Log('Wrong file.');
+      Log('No patterns found.');
+      Result := False;
+    end
+    else if Length(SearchInfo) > 1 then
+    begin
+      Log('Wrong file. Too much patterns found.');
       Result := False;
     end
     else
     begin
-
-      Log('Version ''' + GetVersionName(FileBuffer) + ''' detected.');
-
       if GetApplicationType(FileBuffer) = atEditor then
         Log('It is Map Editor.');
       if SearchInfo[0].PatchVersion = pvMastermind then
@@ -363,7 +374,7 @@ begin
     Exit;
 
   AList := TStringList.Create;
-  for j := 0 to 1 do
+  for j := 1 to 5 do
   begin
     while FileBuffer[i] = $00 do
       Dec(i);
@@ -372,11 +383,14 @@ begin
     LStr := PAnsiChar(@FileBuffer[i + 1]);
     AList.Add(LStr);
   end;
-  Result := AList.Strings[0];
-  if Pos('Patch', Result) > 0 then
-    Result := AList.Strings[1] + ' ' + Result;
+  for j := 0 to AList.Count - 1 do
+  begin
+    if IsAllCapital(AList.Strings[j]) = False then
+      Result := AList.Strings[j] + ' ' + Result;
+    if Pos('.', AList.Strings[j]) > 0 then
+      Break;
+  end;
   AList.Free;
-  //
 end;
 
 function TForm1.FindPos(var Where: array of Byte; What: array of Byte; Offset: Integer = 0; SearchDirection: TSearchDirection = sdDown): Integer;
@@ -454,6 +468,29 @@ begin
       Inc(i, 6);
     end;
   until (i < 0) or (i > High(PatternBuffer));
+end;
+
+procedure TForm1.LabelVersionClick(Sender: TObject);
+begin
+  if DEBUG_LEVEL = 0 then
+  begin
+    DEBUG_LEVEL := 2;
+    LabelVersion.Enabled := True;
+  end
+  else
+  begin
+    DEBUG_LEVEL := 0;
+    LabelVersion.Enabled := False;
+  end;
+  Log('DEBUG_LEVEL set to ' + IntToStr(DEBUG_LEVEL));
+end;
+
+function TForm1.IsAllCapital(SomeString: string): Boolean;
+var
+  TempString: string;
+begin
+  TempString := UpperCase(SomeString);
+  Result := (SomeString = TempString);
 end;
 
 end.

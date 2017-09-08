@@ -68,6 +68,16 @@ object Form1: TForm1
     Caption = 'Version'
     Enabled = False
   end
+  object LabelDebug: TLabel
+    Left = 424
+    Top = 260
+    Width = 81
+    Height = 13
+    AutoSize = False
+    Caption = ' '
+    Transparent = True
+    OnClick = LabelVersionClick
+  end
   object ButtonPatch: TButton
     Left = 204
     Top = 255
