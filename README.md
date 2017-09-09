@@ -1,6 +1,6 @@
 # Civilization II 64-bit Editbox Patcher
 
-![Screenshot](https://github.com/FoxAhead/Civilization-II-64-bit-Editbox-Patcher/blob/master/Screenshot.png?raw=true "Screenshot")
+![Screenshot](Screenshot.png?raw=true "Screenshot")
 
 Welcome!
 
@@ -18,3 +18,5 @@ Supported game versions are:
 * Civilization II: Test of Time
 
 The patcher can even detect if Mastermind's patch has already been applied and will replace it.
+
+[Download](.\releases\)
