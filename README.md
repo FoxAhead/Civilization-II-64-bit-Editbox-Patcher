@@ -19,4 +19,4 @@ Supported game versions are:
 
 The patcher can even detect if Mastermind's patch has already been applied and will replace it.
 
-[Download](.\releases\)
+[Download](releases\)
