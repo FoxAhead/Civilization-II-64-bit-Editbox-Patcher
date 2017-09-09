@@ -49,6 +49,7 @@ type
     function FindPos(var Where: array of Byte; What: array of Byte; Offset: Integer = 0; SearchDirection: TSearchDirection = sdDown): Integer;
     procedure SetCallAddresses(var PatternBuffer: TByteDynArray; var Calls: TCallDynArray);
     function IsAllCapital(SomeString: string): Boolean;
+    function GetEXEType(var FileBuffer: TByteDynArray): string;
   public
     { Public declarations }
   end;
@@ -86,26 +87,24 @@ var
   VersionName: string;
 begin
   Result := False;
+  Log(1, 'Analyzing file ' + FileName + '...');
   try
-    Log(1, 'Analyzing file ' + FileName + '...');
     LoadFromFile(FileName, FileBuffer);
     SearchInfo := SearchForPatterns(FileBuffer);
     VersionName := GetVersionName(FileBuffer);
-    if GetVersionName(FileBuffer) = '' then
+    if VersionName = '' then
       Log('No version info detected.')
     else
-      Log('Version ''' + GetVersionName(FileBuffer) + ''' detected.');
-    Log(1, 'Analyzing done.');
-    if Length(SearchInfo) = 0 then
+      Log('Version ''' + VersionName + ''' detected.');
+    if GetEXEType(FileBuffer) = '454E' then
     begin
-      Log('No patterns found.');
-      Result := False;
-    end
+      Log('This is 16-bit version. 64-bit Windows cannot run 16-bit programs on the processor without the help of an emulator (C) Wikipedia');
+    end;
+
+      if Length(SearchInfo) = 0 then
+      Log('No patterns found.')
     else if Length(SearchInfo) > 1 then
-    begin
-      Log('Wrong file. Too much patterns found.');
-      Result := False;
-    end
+      Log('Wrong file. Too much patterns found.')
     else
     begin
       if GetApplicationType(FileBuffer) = atEditor then
@@ -113,14 +112,9 @@ begin
       if SearchInfo[0].PatchVersion = pvMastermind then
         Log('Mastermind patch detected. Will be replaced.');
       if SearchInfo[0].PatchVersion = pvThisPatch then
-      begin
-        Log('The file is already patched.');
-        Result := False;
-      end
+        Log('The file is already patched.')
       else
-      begin
         Result := True;
-      end;
     end;
   except
     on E: EStreamError do
@@ -133,7 +127,12 @@ begin
       Log('Resource read error!');
       Log(E.Message);
     end;
+    on E: EAccessViolation do
+    begin
+      Log(E.Message);
+    end;
   end;
+  Log(1, 'Analyzing done.');
 end;
 
 function TForm1.IsReadyToPatch: Boolean;
@@ -491,6 +490,19 @@ var
 begin
   TempString := UpperCase(SomeString);
   Result := (SomeString = TempString);
+end;
+
+function TForm1.GetEXEType(var FileBuffer: TByteDynArray): string;
+var
+  DosHeader: TImageDosHeader;
+  Signature: Word;
+begin
+  Result := '';
+  DosHeader := PImageDosHeader(@FileBuffer[0])^;
+  if DosHeader.e_magic <> IMAGE_DOS_SIGNATURE then
+    Exit;
+  Signature := PWord(@FileBuffer[DosHeader._lfanew])^;
+  Result := IntToHex(Signature, 2);
 end;
 
 end.
