@@ -1,8 +1,8 @@
 # Civilization II 64-bit Editbox Patcher
 
-Welcome!
-
 ![Screenshot](https://github.com/FoxAhead/Civilization-II-64-bit-Editbox-Patcher/blob/master/Screenshot.png?raw=true "Screenshot")
+
+Welcome!
 
 This is Civilization II 64-bit Editbox Patcher.
 
