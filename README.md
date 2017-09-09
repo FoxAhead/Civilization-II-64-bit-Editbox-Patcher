@@ -2,7 +2,7 @@
 
 Welcome!
 
-[![Screenshot](https://github.com/FoxAhead/Civilization-II-64-bit-Editbox-Patcher/blob/master/src/Screenshot.png?raw=true "Screenshot")]
+[![Screenshot](https://github.com/FoxAhead/Civilization-II-64-bit-Editbox-Patcher/blob/master/Screenshot.png?raw=true "Screenshot")]
 
 This is Civilization II 64-bit Editbox Patcher.
 
