@@ -2,6 +2,8 @@
 
 Welcome!
 
+![Screenshot](https://github.com/FoxAhead/Civilization-II-64-bit-Editbox-Patcher/blob/master/src/Screenshot.png?raw=true "Screenshot")
+
 This is Civilization II 64-bit Editbox Patcher.
 
 It eliminates game and editor crashes on 64-bit systems when the game tries to display edit controls (input fields) for entering text (like city name, emperor name, world sizes etc.).
